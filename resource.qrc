@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/imgs">
+        <file>res/background.png</file>
+        <file>res/eBullet.png</file>
+        <file>res/enemy_1.png</file>
+        <file>res/enemy_2.png</file>
+        <file>res/enemy_3.png</file>
+        <file>res/pBullet.png</file>
+        <file>res/ship.png</file>
+    </qresource>
+</RCC>
