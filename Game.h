@@ -9,6 +9,10 @@
 #include "Score.h"
 #include "Health.h"
 #include "EnemyManager.h"
+#include "Player.h"
+#include "Score.h"
+#include "Health.h"
+>>>>>>> 44aaf27b246e25f7ea975a198dc109012e9037d5
 
 class Game: public QGraphicsView{
 

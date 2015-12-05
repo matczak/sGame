@@ -12,6 +12,7 @@
 Game::Game(QWidget *parent){
     // create the scene
     scene = new QGraphicsScene();
+
     scene->setSceneRect(0,0,320,700);
     setBackgroundBrush(QBrush(QImage(":/imgs/res/background.png")));
 
@@ -31,8 +32,6 @@ Game::Game(QWidget *parent){
     health = new Health();
     health->setPos(health->x(),health->y()+25);
     scene->addItem(health);
-
-
 
     // spawn enemies
     QTimer * timer = new QTimer();

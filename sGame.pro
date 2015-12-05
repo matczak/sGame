@@ -18,8 +18,13 @@ SOURCES += main.cpp \
     Game.cpp \
     Health.cpp \
     Player.cpp \
+<<<<<<< HEAD \
+    enemymanager.cpp
     Score.cpp \
     EnemyManager.cpp
+=======
+    Score.cpp
+>>>>>>> 44aaf27b246e25f7ea975a198dc109012e9037d5
 
 HEADERS  += \
     Bullet.h \
@@ -27,8 +32,13 @@ HEADERS  += \
     Game.h \
     Health.h \
     Player.h \
+<<<<<<< HEAD \
+    enemymanager.h
     Score.h \
     EnemyManager.h
+=======
+    Score.h
+>>>>>>> 44aaf27b246e25f7ea975a198dc109012e9037d5
 
 DISTFILES +=
 
