@@ -7,48 +7,27 @@
 
 
 Player::Player(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
-    // set bullet sound
-//    bulletsound = new QMediaPlayer();
-//    bulletsound->setMedia(QUrl("qrc:/sounds/bullet.wav"));
-
     // set graphic
     setPixmap(QPixmap(":/imgs/res/ship.png"));
 
     // time to shoot
-
     timer.start();
 }
 
-void Player::keyPressEvent(QKeyEvent *event){
+/**
+ * @brief Player::move
+ * @param direction
+ * direction: -1 -> left
+ * direction:  1 -> right
+ */
+void Player::move(int direction)
+{
+    qDebug () << direction;
+}
 
-    // move the player left and right
-    if (event->key() == Qt::Key_Left){
-        if (pos().x() > 0)
-        setPos(x()-10,y());
-    }
-    else if (event->key() == Qt::Key_Right){
-        if (pos().x() + 100 < 800)
-        setPos(x()+10,y());
-    }
-    // shoot with the spacebar
-    if (event->key() == Qt::Key_Space){
-        // create a bullet
-
-        if(timer.elapsed() < 500) return;
-        timer.start();
-        Bullet * bullet = new Bullet();
-        bullet->setPos(x()+45,y());
-        scene()->addItem(bullet);
-
-        // play bulletsound
-//        if (bulletsound->state() == QMediaPlayer::PlayingState){
-//            bulletsound->setPosition(0);
-//        }
-//        else if (bulletsound->state() == QMediaPlayer::StoppedState){
-//            bulletsound->play();
-//        }
-
-    }
+void Player::shoot()
+{
+    qDebug () << "SHOOTED!";
 }
 
 void Player::spawn(){

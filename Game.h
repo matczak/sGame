@@ -4,9 +4,11 @@
 #include <QGraphicsView>
 #include <QWidget>
 #include <QGraphicsScene>
+#include <QKeyEvent>
 #include "Player.h"
 #include "Score.h"
 #include "Health.h"
+#include "EnemyManager.h"
 
 class Game: public QGraphicsView{
 
@@ -18,6 +20,7 @@ public:
     Score * score;
     Health * health;
 
+    void keyPressEvent(QKeyEvent * event);
 };
 
 #endif
