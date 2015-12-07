@@ -12,7 +12,6 @@
 #include "Player.h"
 #include "Score.h"
 #include "Health.h"
->>>>>>> 44aaf27b246e25f7ea975a198dc109012e9037d5
 
 class Game: public QGraphicsView{
 
@@ -21,10 +20,18 @@ public:
 
     QGraphicsScene * scene;
     Player * player;
-    Score * score;
+    Score * scoreManager;
     Health * health;
+    EnemyManager * enemyManager;
 
     void keyPressEvent(QKeyEvent * event);
+private:
+    int level;
+    int life;
+    void initGame();
+    void setLevel(int level);
+    void decreaseLife();
+
 };
 
 #endif

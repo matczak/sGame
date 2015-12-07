@@ -22,7 +22,11 @@ Player::Player(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
  */
 void Player::move(int direction)
 {
-    qDebug () << direction;
+    if( direction == -1) {
+        setPos(x()-10, y());
+    } else if (direction == 1) {
+        setPos(x()+10, y());
+    }
 }
 
 void Player::shoot()

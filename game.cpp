@@ -5,39 +5,10 @@
 //#include <QMediaPlayer>
 #include <QBrush>
 #include <QImage>
-#include "EnemyManager.h"
 
-#define test EnemyManager::instance()
-
-Game::Game(QWidget *parent){
-    // create the scene
-    scene = new QGraphicsScene();
-
-    scene->setSceneRect(0,0,320,700);
-    setBackgroundBrush(QBrush(QImage(":/imgs/res/background.png")));
-
-    setScene(scene);
-    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    setFixedSize(320,700);
-
-    // create the player
-    player = new Player();
-    player->setPos(400,500);
-    scene->addItem(player);
-
-    // create the score/health
-    score = new Score();
-    scene->addItem(score);
-    health = new Health();
-    health->setPos(health->x(),health->y()+25);
-    scene->addItem(health);
-
-    // spawn enemies
-    QTimer * timer = new QTimer();
-    QObject::connect(timer,SIGNAL(timeout()),test,SLOT(spawn()));
-    timer->start(2000);
-
+Game::Game(QWidget *parent)
+{
+    this->initGame();
     show();
 }
 
@@ -50,4 +21,48 @@ void Game::keyPressEvent(QKeyEvent *event)
     } else if (event->key() == Qt::Key_Space) {
         player->shoot();
     }
+}
+
+void Game::initGame()
+{
+    // init class
+    scene        = new QGraphicsScene();
+    enemyManager = new EnemyManager();
+    player       = new Player();
+    scoreManager = new Score();
+    health       = new Health();
+
+    level = 0;
+    score = 0;
+    life  = 3;
+
+    scene->setSceneRect(0,0,400,700);
+    setBackgroundBrush(QBrush(QImage(":/imgs/res/background.png")));
+
+    setScene(scene);
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setFixedSize(400,700);
+
+    // set the player
+    player->setPos(400,500);
+    scene->addItem(player);
+
+    // set the score/health
+    health->setPos(health->x(),health->y()+25);
+    scene->addItem(health);
+    scene->addItem(scoreManager);
+
+    this->setLevel(1);
+
+}
+
+void Game::setLevel(int level)
+{
+    this->level = level;
+}
+
+void Game::decreaseLife()
+{
+    this->life--;
 }

@@ -1,35 +1,24 @@
 #ifndef ENEMYMANAGER_H
 #define ENEMYMANAGER_H
-#include "Enemy.h"
 
-class EnemyManager
+#include <QObject>
+#include <QTimer>
+
+class EnemyManager: public QObject
 {
-private:
-   EnemyManager() {}
-   EnemyManager(const EnemyManager&) {
-       return *this;
-   }
-//   EnemyManager& (const EnemyManager&) {
-//       return *this;
-//   }
-
+    Q_OBJECT
 public:
+    EnemyManager();
 
-   static EnemyManager & instance() {
-       static EnemyManager * _instance = 0;
-       if ( _instance == 0 ) {
-           _instance = new EnemyManager();
-       }
-       return *_instance;
-   }
-   void preSetEnemies();
-   void getOrCreateEnemy();
-   void createEnemy();
-public slots:
-   void spawn();
 private:
-   QVector <Enemy> enemies;
-};
+    int timetToRespawn;
+    QTimer * timer;
+    void initTimer();
 
+public slots:
+    void spawn();
+    void test();
+
+};
 
 #endif // ENEMYMANAGER_H

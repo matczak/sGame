@@ -1,28 +1,26 @@
 #include "EnemyManager.h"
+#include <QDebug>
 
 EnemyManager::EnemyManager()
 {
-//    enemies.push_back();
+    timetToRespawn = 5000;
+    this->initTimer();
 }
 
-void EnemyManager::preSetEnemies()
+void EnemyManager::initTimer()
 {
-
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(test()));
+    timer->start(timetToRespawn);
 }
 
-void EnemyManager::getOrCreateEnemy()
+void EnemyManager::spawn()
 {
-
+    qDebug () << "SPAWN!";
 }
 
-void EnemyManager::createEnemy()
+void EnemyManager::test()
 {
-
-}
-
-void EnemyManager::spawn(){
-    // create an enemy
-    Enemy * enemy = new Enemy();
-    scene()->addItem(enemy);
+    qDebug () << "It's working!";
 }
 
