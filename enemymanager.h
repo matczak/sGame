@@ -3,6 +3,8 @@
 
 #include <QObject>
 #include <QTimer>
+#include <QVector>
+#include <Enemy.h>
 
 class EnemyManager: public QObject
 {
@@ -12,12 +14,13 @@ public:
 
 private:
     int timetToRespawn;
+    int activeEnemies;
     QTimer * timer;
+    Enemy * enemy;
     void initTimer();
 
 public slots:
     void spawn();
-    void test();
 
 };
 

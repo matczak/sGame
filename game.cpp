@@ -33,7 +33,6 @@ void Game::initGame()
     health       = new Health();
 
     level = 0;
-    score = 0;
     life  = 3;
 
     scene->setSceneRect(0,0,400,700);
@@ -45,7 +44,7 @@ void Game::initGame()
     setFixedSize(400,700);
 
     // set the player
-    player->setPos(400,500);
+    player->setPos(175,600);
     scene->addItem(player);
 
     // set the score/health

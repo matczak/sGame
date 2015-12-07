@@ -22,6 +22,7 @@ Enemy::Enemy(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
 
     yTarget = rand() % 250;
+    xTarget = rand() % 200;
 
     // start the timer
     timer->start(50);
@@ -32,7 +33,17 @@ void Enemy::move(){
     if (y() < yTarget) {
         setPos(x(),y()+5);
     } else {
-
+        if(x() < xTarget) {
+            setPos(x()+5,y());
+            if(x() >= xTarget) {
+                xTarget = rand() % 200;
+            }
+        } else {
+            setPos(x()-5,y());
+            if(x() >= xTarget) {
+                xTarget = rand() % 200;
+            }
+        }
     }
 
 

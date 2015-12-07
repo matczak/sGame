@@ -13,6 +13,7 @@ public slots:
     void move();
 private:
     int yTarget;
+    int xTarget;
 
 };
 
