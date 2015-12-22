@@ -14,24 +14,25 @@ Player::Player(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
     timer.start();
 }
 
-/**
- * @brief Player::move
- * @param direction
- * direction: -1 -> left
- * direction:  1 -> right
- */
-void Player::move(int direction)
+void Player::move(direction dir)
 {
-    if( direction == -1) {
+    if( dir == LEFT) {
         setPos(x()-10, y());
-    } else if (direction == 1) {
+    } else if (dir == RIGHT) {
         setPos(x()+10, y());
     }
 }
 
 void Player::shoot()
 {
-    qDebug () << "SHOOTED!";
+    if(timer.elapsed() > 500 ) {
+        Bullet * bullet = new Bullet();
+        bullet->setType(PLAYER);
+        bullet->setPos(x()+30,y()-20);
+        scene()->addItem(bullet);
+        timer.restart();
+    }
+
 }
 
 void Player::spawn(){

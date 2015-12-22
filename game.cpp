@@ -5,6 +5,7 @@
 //#include <QMediaPlayer>
 #include <QBrush>
 #include <QImage>
+#include <QDebug>
 
 Game::Game(QWidget *parent)
 {
@@ -15,9 +16,9 @@ Game::Game(QWidget *parent)
 void Game::keyPressEvent(QKeyEvent *event)
 {
     if (event->key() == Qt::Key_Left) {
-        player->move(-1);
+        player->move(LEFT);
     } else if (event->key() == Qt::Key_Right) {
-        player->move(1);
+        player->move(RIGHT);
     } else if (event->key() == Qt::Key_Space) {
         player->shoot();
     }
@@ -32,7 +33,6 @@ void Game::initGame()
     scoreManager = new Score();
     health       = new Health();
 
-    level = 0;
     life  = 3;
 
     scene->setSceneRect(0,0,400,700);
@@ -52,16 +52,27 @@ void Game::initGame()
     scene->addItem(health);
     scene->addItem(scoreManager);
 
-    this->setLevel(1);
+    //TODO: add start button and connect to startGame slot!
+    //add start button
+//    button = new QPushButton();
+//    button->setText("Start");
+//    button->setGeometry(QRect(QPoint(100, 100),QSize(200, 50)));
+//    scene->addWidget(button);
+//    connect(button, SIGNAL(released()), this, SLOT(startGame()));
+
+    this->startGame();
 
 }
 
-void Game::setLevel(int level)
-{
-    this->level = level;
-}
 
 void Game::decreaseLife()
 {
     this->life--;
+}
+
+void Game::startGame()
+{
+//    button->hide();
+//    qDebug() << button->isHidden();
+    enemyManager->start();
 }

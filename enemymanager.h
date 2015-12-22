@@ -11,6 +11,8 @@ class EnemyManager: public QObject
     Q_OBJECT
 public:
     EnemyManager();
+    void start();
+    void decreaseEnemies();
 
 private:
     int timetToRespawn;

@@ -8,7 +8,16 @@ EnemyManager::EnemyManager()
 {
     activeEnemies = 0;
     timetToRespawn = 5000;
+}
+
+void EnemyManager::start()
+{
     this->initTimer();
+}
+
+void EnemyManager::decreaseEnemies()
+{
+    activeEnemies--;
 }
 
 void EnemyManager::initTimer()
@@ -21,7 +30,6 @@ void EnemyManager::initTimer()
 void EnemyManager::spawn()
 {
     if(activeEnemies < 3) {
-        qDebug () << activeEnemies;
         enemy = new Enemy();
         game->scene->addItem(enemy);
         activeEnemies++;

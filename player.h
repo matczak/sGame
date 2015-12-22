@@ -7,11 +7,16 @@
 #include <QElapsedTimer>
 //#include <QMediaPlayer>
 
+enum direction {
+    LEFT  = -1,
+    RIGHT = 1
+};
+
 class Player:public QObject, public QGraphicsPixmapItem{
     Q_OBJECT
 public:
     Player(QGraphicsItem * parent=0);
-    void move(int direction);
+    void move(direction direction);
     void shoot();
 public slots:
     void spawn();
