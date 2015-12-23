@@ -30,7 +30,8 @@ void EnemyManager::initTimer()
 void EnemyManager::spawn()
 {
     if(activeEnemies < 3) {
-        enemy = new Enemy();
+        int enemyType = (rand() % 3) + 1;
+        enemy = new Enemy(enemyType);
         game->scene->addItem(enemy);
         activeEnemies++;
     }

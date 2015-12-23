@@ -7,12 +7,13 @@
 
 extern Game * game;
 
-Enemy::Enemy(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
+Enemy::Enemy(int type, QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
     //set random x position
     int randomNumber = (rand() % 350 - 25) + 50;
     setPos(randomNumber,0);
 
-    setPixmap(QPixmap(":/imgs/res/enemy_1.png"));
+    QString direction = ":/imgs/res/enemy_"+QString::number(type)+".png";
+    setPixmap(QPixmap(direction));
     setTransformOriginPoint(50,50);
 
     // make/connect a timer to move() the enemy every so often
@@ -24,10 +25,16 @@ Enemy::Enemy(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
 
     yTarget = rand() % 250;
     xTarget = rand() % 200;
+    score   = (rand() % 10) + 3;
 
     // start the timer
     moveTime->start(50);
     shootTime->start(rand() % 3500 + 2000);
+}
+
+int Enemy::getScore()
+{
+    return this->score;
 }
 
 void Enemy::move(){
@@ -51,8 +58,7 @@ void Enemy::move(){
 
 void Enemy::shoot()
 {
-    Bullet * bullet = new Bullet();
-    bullet->setType(ENEMY);
+    Bullet * bullet = new Bullet(ENEMY);
     bullet->setPos(x()+35,y()+35);
     scene()->addItem(bullet);
 }

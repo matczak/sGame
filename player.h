@@ -18,8 +18,6 @@ public:
     Player(QGraphicsItem * parent=0);
     void move(direction direction);
     void shoot();
-public slots:
-    void spawn();
 private:
 //    QMediaPlayer * bulletsound;
     QElapsedTimer timer;

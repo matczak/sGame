@@ -14,9 +14,7 @@ enum bullet_type {
 class Bullet: public QObject,public QGraphicsPixmapItem {
     Q_OBJECT
 public:
-    Bullet(QGraphicsItem * parent=0);
-    void setType(bullet_type type);
-    int getType();
+    Bullet(bullet_type type, QGraphicsItem * parent=0);
 public slots:
     void move();
 private:

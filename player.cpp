@@ -17,8 +17,10 @@ Player::Player(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
 void Player::move(direction dir)
 {
     if( dir == LEFT) {
+        if(x()<10) return;
         setPos(x()-10, y());
     } else if (dir == RIGHT) {
+        if(x()>330)return;
         setPos(x()+10, y());
     }
 }
@@ -26,17 +28,10 @@ void Player::move(direction dir)
 void Player::shoot()
 {
     if(timer.elapsed() > 500 ) {
-        Bullet * bullet = new Bullet();
-        bullet->setType(PLAYER);
+        Bullet * bullet = new Bullet(PLAYER);
         bullet->setPos(x()+30,y()-20);
         scene()->addItem(bullet);
         timer.restart();
     }
 
-}
-
-void Player::spawn(){
-    // create an enemy
-    Enemy * enemy = new Enemy();
-    scene()->addItem(enemy);
 }
