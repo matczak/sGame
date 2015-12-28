@@ -17,19 +17,37 @@ Enemy::Enemy(int type, QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(pa
     setTransformOriginPoint(50,50);
 
     // make/connect a timer to move() the enemy every so often
-    QTimer * moveTime  = new QTimer(this);
-    QTimer * shootTime = new QTimer(this);
+    moveTimer  = new QTimer(this);
+    shootTimer = new QTimer(this);
 
-    connect(moveTime,SIGNAL(timeout()),this,SLOT(move()));
-    connect(shootTime,SIGNAL(timeout()),this,SLOT(shoot()));
+    connect(moveTimer,SIGNAL(timeout()),this,SLOT(move()));
+    connect(shootTimer,SIGNAL(timeout()),this,SLOT(shoot()));
 
     yTarget = rand() % 250;
     xTarget = rand() % 200;
     score   = (rand() % 10) + 3;
 
-    // start the timer
-    moveTime->start(50);
-    shootTime->start(rand() % 3500 + 2000);
+    // start the timers
+    shootTime = rand() % 3500 + 2000;
+    moveTimer->start(50);
+    shootTimer->start(shootTime);
+}
+
+void Enemy::stop()
+{
+    moveTimer->stop();
+    shootTimer->stop();
+}
+
+void Enemy::setPause(bool pause)
+{
+    if (pause) {
+        moveTimer->stop();
+        shootTimer->stop();
+    } else {
+        moveTimer->start(50);
+        shootTimer->start(shootTime);
+    }
 }
 
 int Enemy::getScore()

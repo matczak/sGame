@@ -10,12 +10,14 @@ Player::Player(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
     // set graphic
     setPixmap(QPixmap(":/imgs/res/ship.png"));
 
+    paused = false;
     // time to shoot
     timer.start();
 }
 
 void Player::move(direction dir)
 {
+    if(paused) return;
     if( dir == LEFT) {
         if(x()<10) return;
         setPos(x()-10, y());
@@ -25,9 +27,14 @@ void Player::move(direction dir)
     }
 }
 
+void Player::tooglePause()
+{
+    paused = !paused;
+}
+
 void Player::shoot()
 {
-    if(timer.elapsed() > 500 ) {
+    if(timer.elapsed() > 500 && !paused) {
         Bullet * bullet = new Bullet(PLAYER);
         bullet->setPos(x()+30,y()-20);
         scene()->addItem(bullet);

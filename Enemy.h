@@ -11,12 +11,17 @@ class Enemy: public QObject,public QGraphicsPixmapItem{
     Q_OBJECT
 public:
     Enemy(int type, QGraphicsItem * parent=0);
-    void destroy();
+    void stop();
+    void setPause(bool pause);
     int getScore();
 private:
     int yTarget;
     int xTarget;
     int score;
+    int shootTime;
+    bool paused;
+    QTimer * moveTimer;
+    QTimer * shootTimer;
 private slots:
     void move();
     void shoot();

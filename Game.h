@@ -6,6 +6,7 @@
 #include <QGraphicsScene>
 #include <QKeyEvent>
 #include <QPushButton>
+#include <QMediaPlayer>
 #include "Player.h"
 #include "Score.h"
 #include "Health.h"
@@ -26,12 +27,14 @@ public:
     EnemyManager   * enemyManager;
 
     void keyPressEvent(QKeyEvent * event);
+    void gameOver();
 
 private:
     int life;
     void initGame();
     void setLevel(int level);
     void decreaseLife();
+    void pause();
     QPushButton * button;
     QGraphicsProxyWidget * test;
 

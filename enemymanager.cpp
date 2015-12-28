@@ -8,6 +8,7 @@ EnemyManager::EnemyManager()
 {
     activeEnemies = 0;
     timetToRespawn = 5000;
+    paused = false;
 }
 
 void EnemyManager::start()
@@ -15,9 +16,30 @@ void EnemyManager::start()
     this->initTimer();
 }
 
+void EnemyManager::stop()
+{
+    timer->stop();
+    for (int i=0; i < enemies.count(); i++) {
+        (*enemies[i]).stop();
+    }
+}
+
 void EnemyManager::decreaseEnemies()
 {
     activeEnemies--;
+}
+
+void EnemyManager::tooglePause()
+{
+    paused = !paused;
+    for(int i=0;i<enemies.count();i++) {
+        (*enemies[i]).setPause(paused);
+    }
+    if(paused) {
+        timer->stop();
+    } else {
+        timer->start(timetToRespawn);
+    }
 }
 
 void EnemyManager::initTimer()
@@ -31,8 +53,9 @@ void EnemyManager::spawn()
 {
     if(activeEnemies < 3) {
         int enemyType = (rand() % 3) + 1;
-        enemy = new Enemy(enemyType);
+        Enemy * enemy = new Enemy(enemyType);
         game->scene->addItem(enemy);
+        enemies << enemy;
         activeEnemies++;
     }
 }

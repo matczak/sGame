@@ -2,7 +2,6 @@
 #include <QTimer>
 #include <QGraphicsTextItem>
 #include <QFont>
-//#include <QMediaPlayer>
 #include <QBrush>
 #include <QImage>
 #include <QDebug>
@@ -21,7 +20,15 @@ void Game::keyPressEvent(QKeyEvent *event)
         player->move(RIGHT);
     } else if (event->key() == Qt::Key_Space) {
         player->shoot();
+    } else if (event->key() == Qt::Key_P) {
+        pause();
     }
+}
+
+void Game::gameOver()
+{
+    enemyManager->stop();
+    scoreManager->stop();
 }
 
 void Game::initGame()
@@ -68,6 +75,12 @@ void Game::initGame()
 void Game::decreaseLife()
 {
     this->life--;
+}
+
+void Game::pause()
+{
+    enemyManager->tooglePause();
+    player->tooglePause();
 }
 
 void Game::startGame()

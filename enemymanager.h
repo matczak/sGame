@@ -12,13 +12,15 @@ class EnemyManager: public QObject
 public:
     EnemyManager();
     void start();
+    void stop();
     void decreaseEnemies();
-
+    void tooglePause();
 private:
     int timetToRespawn;
     int activeEnemies;
+    bool paused;
     QTimer * timer;
-    Enemy * enemy;
+    QList <Enemy*> enemies;
     void initTimer();
 
 public slots:

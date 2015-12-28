@@ -17,10 +17,12 @@ class Player:public QObject, public QGraphicsPixmapItem{
 public:
     Player(QGraphicsItem * parent=0);
     void move(direction direction);
+    void tooglePause();
     void shoot();
 private:
-//    QMediaPlayer * bulletsound;
+    bool paused;
     QElapsedTimer timer;
+//    QMediaPlayer * bulletsound;
 };
 
 #endif // PLAYER_H

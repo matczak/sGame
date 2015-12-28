@@ -11,6 +11,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = sGame
 TEMPLATE = app
 
+QT += multimedia
+
 
 SOURCES += main.cpp \
     Bullet.cpp \
