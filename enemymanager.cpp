@@ -4,6 +4,8 @@
 
 extern Game * game;
 
+EnemyManager* EnemyManager::_instance = 0;
+
 EnemyManager::EnemyManager()
 {
     activeEnemies = 0;
@@ -40,6 +42,14 @@ void EnemyManager::tooglePause()
     } else {
         timer->start(timetToRespawn);
     }
+}
+
+EnemyManager *EnemyManager::getInstance()
+{
+    if (!_instance) {
+        _instance = new EnemyManager();
+    }
+    return _instance;
 }
 
 void EnemyManager::initTimer()

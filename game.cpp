@@ -35,7 +35,7 @@ void Game::initGame()
 {
     // init class
     scene        = new QGraphicsScene();
-    enemyManager = new EnemyManager();
+    enemyManager = EnemyManager::getInstance();
     player       = new Player();
     scoreManager = new Score();
     health       = new Health();

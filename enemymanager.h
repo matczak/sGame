@@ -10,12 +10,14 @@ class EnemyManager: public QObject
 {
     Q_OBJECT
 public:
-    EnemyManager();
     void start();
     void stop();
     void decreaseEnemies();
     void tooglePause();
+    static EnemyManager* getInstance();
 private:
+    EnemyManager();
+    static EnemyManager* _instance;
     int timetToRespawn;
     int activeEnemies;
     bool paused;
