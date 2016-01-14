@@ -7,6 +7,7 @@
 #include <QKeyEvent>
 #include <QPushButton>
 #include <QMediaPlayer>
+#include <QGraphicsTextItem>
 #include "Player.h"
 #include "Score.h"
 #include "Health.h"
@@ -14,8 +15,9 @@
 #include "Player.h"
 #include "Score.h"
 #include "Health.h"
+#include "TextManager.h"
 
-class Game:public QGraphicsView{
+class Game:public QGraphicsView {
 
 public:
     Game(QWidget * parent=0);
@@ -25,6 +27,7 @@ public:
     Score          * scoreManager;
     Health         * health;
     EnemyManager   * enemyManager;
+    TextManager    * textManager;
 
     void keyPressEvent(QKeyEvent * event);
     void gameOver();

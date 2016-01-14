@@ -16,12 +16,14 @@ EnemyManager::EnemyManager()
 void EnemyManager::start()
 {
     this->initTimer();
+    spawn();
 }
 
 void EnemyManager::stop()
 {
     timer->stop();
-    for (int i=0; i < enemies.count(); i++) {
+    QList<Enemy *> enemies = game->scene->findChildren<Enemy *>();
+    for (int i=0;i<enemies.count();i++) {
         (*enemies[i]).stop();
     }
 }
@@ -31,9 +33,13 @@ void EnemyManager::decreaseEnemies()
     activeEnemies--;
 }
 
-void EnemyManager::tooglePause()
+void EnemyManager::togglePause()
 {
     paused = !paused;
+    QList<QGraphicsItem *> items = game->scene->items();
+            qDebug () << items.count();
+    QList<Enemy *> enemies = game->scene->findChildren<Enemy *>();
+    qDebug() << enemies.count();
     for(int i=0;i<enemies.count();i++) {
         (*enemies[i]).setPause(paused);
     }
@@ -65,7 +71,6 @@ void EnemyManager::spawn()
         int enemyType = (rand() % 3) + 1;
         Enemy * enemy = new Enemy(enemyType);
         game->scene->addItem(enemy);
-        enemies << enemy;
         activeEnemies++;
     }
 }

@@ -33,6 +33,11 @@ Enemy::Enemy(int type, QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(pa
     shootTimer->start(shootTime);
 }
 
+Enemy::~Enemy()
+{
+
+}
+
 void Enemy::stop()
 {
     moveTimer->stop();

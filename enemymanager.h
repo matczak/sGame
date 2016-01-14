@@ -13,7 +13,7 @@ public:
     void start();
     void stop();
     void decreaseEnemies();
-    void tooglePause();
+    void togglePause();
     static EnemyManager* getInstance();
 private:
     EnemyManager();
@@ -22,7 +22,6 @@ private:
     int activeEnemies;
     bool paused;
     QTimer * timer;
-    QList <Enemy*> enemies;
     void initTimer();
 
 public slots:

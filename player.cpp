@@ -27,7 +27,7 @@ void Player::move(direction dir)
     }
 }
 
-void Player::tooglePause()
+void Player::togglePause()
 {
     paused = !paused;
 }

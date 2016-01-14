@@ -11,6 +11,7 @@ class Enemy: public QObject,public QGraphicsPixmapItem{
     Q_OBJECT
 public:
     Enemy(int type, QGraphicsItem * parent=0);
+    ~Enemy();
     void stop();
     void setPause(bool pause);
     int getScore();

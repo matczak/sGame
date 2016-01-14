@@ -14,7 +14,10 @@ Game::Game(QWidget *parent)
 
 void Game::keyPressEvent(QKeyEvent *event)
 {
-    if (event->key() == Qt::Key_Left) {
+    if (event->key() == Qt::Key_Enter) {
+        textManager->hideText();
+        startGame();
+    } else if (event->key() == Qt::Key_Left) {
         player->move(LEFT);
     } else if (event->key() == Qt::Key_Right) {
         player->move(RIGHT);
@@ -28,7 +31,9 @@ void Game::keyPressEvent(QKeyEvent *event)
 void Game::gameOver()
 {
     enemyManager->stop();
+    QString score = QString::number(scoreManager->getScore());
     scoreManager->stop();
+    textManager->showText("GAME OVER! \nScore:" + score);
 }
 
 void Game::initGame()
@@ -36,6 +41,7 @@ void Game::initGame()
     // init class
     scene        = new QGraphicsScene();
     enemyManager = EnemyManager::getInstance();
+    textManager  = new TextManager();
     player       = new Player();
     scoreManager = new Score();
     health       = new Health();
@@ -58,17 +64,10 @@ void Game::initGame()
     health->setPos(health->x(),health->y()+25);
     scene->addItem(health);
     scene->addItem(scoreManager);
+    scene->addItem(textManager);
 
-    //TODO: add start button and connect to startGame slot!
-    //add start button
-//    button = new QPushButton();
-//    button->setText("Start");
-//    button->setGeometry(QRect(QPoint(100, 100),QSize(200, 50)));
-//    scene->addWidget(button);
-//    connect(button, SIGNAL(released()), this, SLOT(startGame()));
-
-    this->startGame();
-
+    textManager->showText("Press Enter to start");
+    textManager->setPos(textManager->x()+65, textManager->y()+320);
 }
 
 
@@ -79,13 +78,11 @@ void Game::decreaseLife()
 
 void Game::pause()
 {
-    enemyManager->tooglePause();
-    player->tooglePause();
+    enemyManager->togglePause();
+    player->togglePause();
 }
 
 void Game::startGame()
 {
-//    button->hide();
-//    qDebug() << button->isHidden();
     enemyManager->start();
 }

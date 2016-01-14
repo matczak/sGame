@@ -17,7 +17,7 @@ class Player:public QObject, public QGraphicsPixmapItem{
 public:
     Player(QGraphicsItem * parent=0);
     void move(direction direction);
-    void tooglePause();
+    void togglePause();
     void shoot();
 private:
     bool paused;
