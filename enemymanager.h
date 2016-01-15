@@ -3,8 +3,9 @@
 
 #include <QObject>
 #include <QTimer>
-#include <QVector>
+//#include <QVector>
 #include <Enemy.h>
+#include <QMap>
 
 class EnemyManager: public QObject
 {
@@ -14,14 +15,17 @@ public:
     void stop();
     void decreaseEnemies();
     void togglePause();
+    void removeEnemy(int id);
     static EnemyManager* getInstance();
 private:
     EnemyManager();
     static EnemyManager* _instance;
     int timetToRespawn;
     int activeEnemies;
+    int enemiesNumber;
     bool paused;
     QTimer * timer;
+    QMap <int, Enemy *> enemies;
     void initTimer();
 
 public slots:

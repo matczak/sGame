@@ -6,7 +6,7 @@
 #include <QImage>
 #include <QDebug>
 
-Game::Game(QWidget *parent)
+Game::Game()
 {
     this->initGame();
     show();

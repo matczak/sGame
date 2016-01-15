@@ -8,9 +8,10 @@ EnemyManager* EnemyManager::_instance = 0;
 
 EnemyManager::EnemyManager()
 {
-    activeEnemies = 0;
+    enemiesNumber  = 0;
+    activeEnemies  = 0;
     timetToRespawn = 5000;
-    paused = false;
+    paused         = false;
 }
 
 void EnemyManager::start()
@@ -22,9 +23,9 @@ void EnemyManager::start()
 void EnemyManager::stop()
 {
     timer->stop();
-    QList<Enemy *> enemies = game->scene->findChildren<Enemy *>();
-    for (int i=0;i<enemies.count();i++) {
-        (*enemies[i]).stop();
+    QMap<int, Enemy *>::iterator i;
+    for(i = enemies.begin();i != enemies.end(); i++) {
+        (*enemies[i.key()]).stop();
     }
 }
 
@@ -36,18 +37,20 @@ void EnemyManager::decreaseEnemies()
 void EnemyManager::togglePause()
 {
     paused = !paused;
-    QList<QGraphicsItem *> items = game->scene->items();
-            qDebug () << items.count();
-    QList<Enemy *> enemies = game->scene->findChildren<Enemy *>();
-    qDebug() << enemies.count();
-    for(int i=0;i<enemies.count();i++) {
-        (*enemies[i]).setPause(paused);
+    QMap<int, Enemy *>::iterator i;
+    for(i = enemies.begin();i != enemies.end(); i++) {
+        (*enemies[i.key()]).setPause(paused);
     }
     if(paused) {
         timer->stop();
     } else {
         timer->start(timetToRespawn);
     }
+}
+
+void EnemyManager::removeEnemy(int id)
+{
+    enemies.remove(id);
 }
 
 EnemyManager *EnemyManager::getInstance()
@@ -68,8 +71,11 @@ void EnemyManager::initTimer()
 void EnemyManager::spawn()
 {
     if(activeEnemies < 3) {
+        enemiesNumber++;
         int enemyType = (rand() % 3) + 1;
         Enemy * enemy = new Enemy(enemyType);
+        enemy->setID(enemiesNumber);
+        enemies[enemiesNumber] = enemy;
         game->scene->addItem(enemy);
         activeEnemies++;
     }

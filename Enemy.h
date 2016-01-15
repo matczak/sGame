@@ -14,12 +14,15 @@ public:
     ~Enemy();
     void stop();
     void setPause(bool pause);
+    void setID(int id);
+    int getID();
     int getScore();
 private:
     int yTarget;
     int xTarget;
     int score;
     int shootTime;
+    int ID;
     bool paused;
     QTimer * moveTimer;
     QTimer * shootTimer;

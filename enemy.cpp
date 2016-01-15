@@ -35,7 +35,7 @@ Enemy::Enemy(int type, QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(pa
 
 Enemy::~Enemy()
 {
-
+    game->enemyManager->removeEnemy(ID);
 }
 
 void Enemy::stop()
@@ -53,6 +53,16 @@ void Enemy::setPause(bool pause)
         moveTimer->start(50);
         shootTimer->start(shootTime);
     }
+}
+
+void Enemy::setID(int id)
+{
+    ID = id;
+}
+
+int Enemy::getID()
+{
+    return ID;
 }
 
 int Enemy::getScore()
