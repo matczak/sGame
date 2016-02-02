@@ -16,6 +16,7 @@
 #include "Score.h"
 #include "Health.h"
 #include "TextManager.h"
+#include "Background.h"
 
 class Game:public QGraphicsView {
 
@@ -27,6 +28,7 @@ public:
     Health         * health;
     EnemyManager   * enemyManager;
     TextManager    * textManager;
+    Background     * background;
 
     void keyPressEvent(QKeyEvent * event);
     void gameOver();

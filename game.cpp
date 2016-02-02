@@ -49,12 +49,16 @@ void Game::initGame()
     life  = 3;
 
     scene->setSceneRect(0,0,400,700);
-    setBackgroundBrush(QBrush(QImage(":/imgs/res/background.png")));
+//    setBackgroundBrush(QBrush(QImage(":/imgs/res/background.png")));
 
     setScene(scene);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(400,700);
+
+    // set background
+    background = new Background();
+    scene->addItem(background);
 
     // set the player
     player->setPos(175,600);
@@ -79,10 +83,12 @@ void Game::decreaseLife()
 void Game::pause()
 {
     enemyManager->togglePause();
+    background->togglePause();
     player->togglePause();
 }
 
 void Game::startGame()
 {
     enemyManager->start();
+    background->start();
 }

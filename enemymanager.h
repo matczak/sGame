@@ -3,7 +3,6 @@
 
 #include <QObject>
 #include <QTimer>
-//#include <QVector>
 #include <Enemy.h>
 #include <QMap>
 

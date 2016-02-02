@@ -22,7 +22,8 @@ SOURCES += main.cpp \
     Player.cpp \
     EnemyManager.cpp \
     Score.cpp \
-    TextManager.cpp
+    TextManager.cpp \
+    Background.cpp
 
 HEADERS  += \
     Bullet.h \
@@ -32,7 +33,8 @@ HEADERS  += \
     Player.h \
     EnemyManager.h \
     Score.h \
-    TextManager.h
+    TextManager.h \
+    Background.h
 
 DISTFILES +=
 
