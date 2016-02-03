@@ -9,7 +9,6 @@
 
 extern Game * game;
 
-
 Bullet::Bullet(bullet_type type, QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
     bulletSound = new QMediaPlayer();
     explodeSound = new QMediaPlayer();

@@ -54,6 +54,9 @@ void Game::initGame()
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(400,700);
 
+    // add font
+    QFontDatabase::addApplicationFont(":/fonts/res/ARCADECLASSIC.TTF");
+
     // init background music
     QMediaPlayer * music = new QMediaPlayer();
     QMediaPlaylist * playlist = new QMediaPlaylist();

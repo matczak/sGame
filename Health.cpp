@@ -10,7 +10,7 @@ Health::Health(QGraphicsItem *parent): QGraphicsTextItem(parent){
     // draw the text
     setPlainText(QString("Health: ") + QString::number(health));
     setDefaultTextColor(Qt::red);
-    setFont(QFont("times",16));
+    setFont(QFont("ArcadeClassic",16));
 }
 
 void Health::decrease(){

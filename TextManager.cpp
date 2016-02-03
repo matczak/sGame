@@ -3,7 +3,7 @@
 TextManager::TextManager()
 {
     setDefaultTextColor(Qt::white);
-    setFont(QFont("Arcade classic",16));
+    setFont(QFont("ArcadeClassic",16));
 }
 
 void TextManager::hideText()
