@@ -1,8 +1,8 @@
-#include "Bullet.h"
 #include <QTimer>
 #include <QGraphicsScene>
 #include <QList>
 #include <typeinfo.h>
+#include "Bullet.h"
 #include "Enemy.h"
 #include "Game.h"
 #include <QDebug>
@@ -11,21 +11,25 @@ extern Game * game;
 
 
 Bullet::Bullet(bullet_type type, QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
+    bulletSound = new QMediaPlayer();
+    explodeSound = new QMediaPlayer();
 
-    this->type = type;
+    bulletSound->setMedia(QUrl("qrc:/sounds/res/fireEffect.mp3"));
+    explodeSound->setMedia(QUrl("qrc:/sounds/res/explodeEffect.mp3"));
 
-    // draw graphics
+    bulletSound->play();
+
     switch(type) {
         case 1: setPixmap(QPixmap(":/imgs/res/pBullet.png"));break;
         case -1: setPixmap(QPixmap(":/imgs/res/eBullet.png"));break;
     }
 
-    // make/connect a timer to move() the bullet every so often
     QTimer * timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
 
     // start the timer
     timer->start(50);
+    this->type = type;
 }
 
 void Bullet::move(){
@@ -35,6 +39,7 @@ void Bullet::move(){
     for (int i = 0, n = colliding_items.size(); i < n; ++i){
         if (typeid(*(colliding_items[i])) == typeid(Enemy)){
             if(this->type == ENEMY) continue;
+            explodeSound->play();
             game->scoreManager->increase();
             game->enemyManager->decreaseEnemies();
 
@@ -46,6 +51,7 @@ void Bullet::move(){
 
             return;
         } else if(typeid(*(colliding_items[i])) == typeid(Player)) {
+            explodeSound->play();
             game->health->decrease();
             scene()->removeItem(this);
             delete this;
@@ -60,3 +66,4 @@ void Bullet::move(){
         delete this;
     }
 }
+

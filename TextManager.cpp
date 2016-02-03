@@ -1,9 +1,9 @@
 #include "TextManager.h"
 
-TextManager::TextManager(QGraphicsItem *parent)
+TextManager::TextManager()
 {
     setDefaultTextColor(Qt::white);
-    setFont(QFont("times",16));
+    setFont(QFont("Arcade classic",16));
 }
 
 void TextManager::hideText()

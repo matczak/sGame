@@ -45,16 +45,23 @@ void Game::initGame()
     player       = new Player();
     scoreManager = new Score();
     health       = new Health();
-
-    life  = 3;
+    life         = 3;
 
     scene->setSceneRect(0,0,400,700);
-//    setBackgroundBrush(QBrush(QImage(":/imgs/res/background.png")));
 
     setScene(scene);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(400,700);
+
+    // init background music
+    QMediaPlayer * music = new QMediaPlayer();
+    QMediaPlaylist * playlist = new QMediaPlaylist();
+    playlist->addMedia(QUrl("qrc:/sounds/res/bgMusic.mp3"));
+    playlist->setPlaybackMode(QMediaPlaylist::Loop);
+    playlist->setCurrentIndex(0);
+    music->setPlaylist(playlist);
+    music->play();
 
     // set background
     background = new Background();

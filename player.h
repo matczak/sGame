@@ -5,7 +5,7 @@
 #include <QObject>
 #include <QGraphicsItem>
 #include <QElapsedTimer>
-//#include <QMediaPlayer>
+#include <QMediaPlayer>
 
 enum direction {
     LEFT  = -1,
@@ -22,7 +22,7 @@ public:
 private:
     bool paused;
     QElapsedTimer timer;
-//    QMediaPlayer * bulletsound;
+
 };
 
 #endif // PLAYER_H

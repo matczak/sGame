@@ -7,7 +7,9 @@
 #include <QKeyEvent>
 #include <QPushButton>
 #include <QMediaPlayer>
+#include <QMediaPlaylist>
 #include <QGraphicsTextItem>
+#include <QFontDatabase>
 #include "Player.h"
 #include "Score.h"
 #include "Health.h"

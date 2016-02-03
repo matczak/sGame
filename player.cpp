@@ -7,12 +7,9 @@
 
 
 Player::Player(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
-    // set graphic
     setPixmap(QPixmap(":/imgs/res/ship.png"));
-
+    timer.start(); // time to shoot
     paused = false;
-    // time to shoot
-    timer.start();
 }
 
 void Player::move(direction dir)
@@ -40,5 +37,4 @@ void Player::shoot()
         scene()->addItem(bullet);
         timer.restart();
     }
-
 }

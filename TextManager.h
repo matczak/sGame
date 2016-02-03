@@ -7,7 +7,7 @@
 class TextManager : public QGraphicsTextItem
 {
 public:
-    TextManager(QGraphicsItem * parent=0);
+    TextManager();
     void hideText();
     void showText(QString text);
 private:

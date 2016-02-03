@@ -4,6 +4,7 @@
 #include <QGraphicsPixmapItem>
 #include <QGraphicsItem>
 #include <QObject>
+#include <QMediaPlayer>
 
 
 enum bullet_type {
@@ -15,9 +16,11 @@ class Bullet: public QObject,public QGraphicsPixmapItem {
     Q_OBJECT
 public:
     Bullet(bullet_type type, QGraphicsItem * parent=0);
-public slots:
+private slots:
     void move();
 private:
+    QMediaPlayer * bulletSound;
+    QMediaPlayer * explodeSound;
     int type;
 };
 

@@ -8,4 +8,12 @@
         <file>res/pBullet.png</file>
         <file>res/ship.png</file>
     </qresource>
+    <qresource prefix="/fonts">
+        <file>res/ARCADECLASSIC.TTF</file>
+    </qresource>
+    <qresource prefix="/sounds">
+        <file>res/bgMusic.mp3</file>
+        <file>res/explodeEffect.mp3</file>
+        <file>res/fireEffect.mp3</file>
+    </qresource>
 </RCC>
