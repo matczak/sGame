@@ -7,7 +7,7 @@
 
 extern Game * game;
 
-Enemy::Enemy(int type, QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
+Enemy::Enemy(int type, bool sound_,QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
     //set random x position
     int randomNumber = (rand() % 350 - 25) + 50;
     setPos(randomNumber,0);
@@ -27,6 +27,12 @@ Enemy::Enemy(int type, QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(pa
     xTarget = rand() % 200;
     score   = (rand() % 10) + 3;
 
+    sound        = sound_;
+    bulletSound  = new QMediaPlayer();
+    explodeSound = new QMediaPlayer();
+    bulletSound->setMedia(QUrl("qrc:/sounds/res/fireEffect.mp3"));
+    explodeSound->setMedia(QUrl("qrc:/sounds/res/explodeEffect.mp3"));
+
     // start the timers
     shootTime = rand() % 3500 + 2000;
     moveTimer->start(50);
@@ -35,6 +41,7 @@ Enemy::Enemy(int type, QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(pa
 
 Enemy::~Enemy()
 {
+    if (sound == true) explodeSound->play();
     game->enemyManager->removeEnemy(ID);
 }
 
@@ -53,6 +60,11 @@ void Enemy::setPause(bool pause)
         moveTimer->start(50);
         shootTimer->start(shootTime);
     }
+}
+
+void Enemy::toggleSound()
+{
+    sound = !sound;
 }
 
 void Enemy::setID(int id)
@@ -91,6 +103,10 @@ void Enemy::move(){
 
 void Enemy::shoot()
 {
+    if(sound== true) {
+        bulletSound->setPosition(0);
+        bulletSound->play();
+    }
     Bullet * bullet = new Bullet(ENEMY);
     bullet->setPos(x()+35,y()+35);
     scene()->addItem(bullet);

@@ -1,15 +1,12 @@
 #include "Player.h"
-#include <QGraphicsScene>
-#include <QKeyEvent>
-#include "Bullet.h"
-#include "Enemy.h"
-#include <QDebug>
-
 
 Player::Player(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
     setPixmap(QPixmap(":/imgs/res/ship.png"));
     timer.start(); // time to shoot
     paused = false;
+    sound = true;
+    bulletSound = new QMediaPlayer();
+    bulletSound->setMedia(QUrl("qrc:/sounds/res/fireEffect.mp3"));
 }
 
 void Player::move(direction dir)
@@ -29,9 +26,18 @@ void Player::togglePause()
     paused = !paused;
 }
 
+void Player::toggleSound()
+{
+    sound = !sound;
+}
+
 void Player::shoot()
 {
     if(timer.elapsed() > 500 && !paused) {
+        if(sound== true) {
+            bulletSound->setPosition(0);
+            bulletSound->play();
+        }
         Bullet * bullet = new Bullet(PLAYER);
         bullet->setPos(x()+30,y()-20);
         scene()->addItem(bullet);

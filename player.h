@@ -6,6 +6,10 @@
 #include <QGraphicsItem>
 #include <QElapsedTimer>
 #include <QMediaPlayer>
+#include <QGraphicsScene>
+#include <QDebug>
+#include "Bullet.h"
+#include "Enemy.h"
 
 enum direction {
     LEFT  = -1,
@@ -18,9 +22,12 @@ public:
     Player(QGraphicsItem * parent=0);
     void move(direction direction);
     void togglePause();
+    void toggleSound();
     void shoot();
 private:
+    bool sound;
     bool paused;
+    QMediaPlayer * bulletSound;
     QElapsedTimer timer;
 
 };

@@ -14,6 +14,7 @@ public:
     void stop();
     void decreaseEnemies();
     void togglePause();
+    void toggleSound();
     void removeEnemy(int id);
     static EnemyManager* getInstance();
 private:
@@ -22,6 +23,7 @@ private:
     int timetToRespawn;
     int activeEnemies;
     int enemiesNumber;
+    bool sound;
     bool paused;
     QTimer * timer;
     QMap <int, Enemy *> enemies;

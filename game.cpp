@@ -25,6 +25,10 @@ void Game::keyPressEvent(QKeyEvent *event)
         player->shoot();
     } else if (event->key() == Qt::Key_P) {
         pause();
+    } else if (event->key() == Qt::Key_M) {
+        toggleMusic();
+        player->toggleSound();
+        enemyManager->toggleSound();
     }
 }
 
@@ -58,7 +62,7 @@ void Game::initGame()
     QFontDatabase::addApplicationFont(":/fonts/res/ARCADECLASSIC.TTF");
 
     // init background music
-    QMediaPlayer * music = new QMediaPlayer();
+    music = new QMediaPlayer();
     QMediaPlaylist * playlist = new QMediaPlaylist();
     playlist->addMedia(QUrl("qrc:/sounds/res/bgMusic.mp3"));
     playlist->setPlaybackMode(QMediaPlaylist::Loop);
@@ -95,6 +99,15 @@ void Game::pause()
     enemyManager->togglePause();
     background->togglePause();
     player->togglePause();
+}
+
+void Game::toggleMusic()
+{
+    if(music->state() == QMediaPlayer::PlayingState) {
+        music->pause();
+    } else {
+        music->play();
+    }
 }
 
 void Game::startGame()

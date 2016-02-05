@@ -19,8 +19,6 @@ public:
 private slots:
     void move();
 private:
-    QMediaPlayer * bulletSound;
-    QMediaPlayer * explodeSound;
     int type;
 };
 

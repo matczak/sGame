@@ -41,7 +41,9 @@ private:
     void setLevel(int level);
     void decreaseLife();
     void pause();
-    QPushButton * button;
+    void toggleMusic();
+    QMediaPlayer         * music;
+    QPushButton          * button;
     QGraphicsProxyWidget * test;
 
 private slots:

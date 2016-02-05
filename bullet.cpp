@@ -2,21 +2,14 @@
 #include <QGraphicsScene>
 #include <QList>
 #include <typeinfo.h>
+#include <QDebug>
 #include "Bullet.h"
 #include "Enemy.h"
 #include "Game.h"
-#include <QDebug>
 
 extern Game * game;
 
 Bullet::Bullet(bullet_type type, QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
-    bulletSound = new QMediaPlayer();
-    explodeSound = new QMediaPlayer();
-
-    bulletSound->setMedia(QUrl("qrc:/sounds/res/fireEffect.mp3"));
-    explodeSound->setMedia(QUrl("qrc:/sounds/res/explodeEffect.mp3"));
-
-    bulletSound->play();
 
     switch(type) {
         case 1: setPixmap(QPixmap(":/imgs/res/pBullet.png"));break;
@@ -38,7 +31,6 @@ void Bullet::move(){
     for (int i = 0, n = colliding_items.size(); i < n; ++i){
         if (typeid(*(colliding_items[i])) == typeid(Enemy)){
             if(this->type == ENEMY) continue;
-            explodeSound->play();
             game->scoreManager->increase();
             game->enemyManager->decreaseEnemies();
 
@@ -50,7 +42,6 @@ void Bullet::move(){
 
             return;
         } else if(typeid(*(colliding_items[i])) == typeid(Player)) {
-            explodeSound->play();
             game->health->decrease();
             scene()->removeItem(this);
             delete this;

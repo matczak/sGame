@@ -12,6 +12,7 @@ EnemyManager::EnemyManager()
     activeEnemies  = 0;
     timetToRespawn = 5000;
     paused         = false;
+    sound          = true;
 }
 
 void EnemyManager::start()
@@ -48,6 +49,15 @@ void EnemyManager::togglePause()
     }
 }
 
+void EnemyManager::toggleSound()
+{
+    sound = !sound;
+    QMap<int, Enemy *>::iterator i;
+    for(i = enemies.begin();i != enemies.end(); i++) {
+        (*enemies[i.key()]).toggleSound();
+    }
+}
+
 void EnemyManager::removeEnemy(int id)
 {
     enemies.remove(id);
@@ -73,7 +83,7 @@ void EnemyManager::spawn()
     if(activeEnemies < 3) {
         enemiesNumber++;
         int enemyType = (rand() % 3) + 1;
-        Enemy * enemy = new Enemy(enemyType);
+        Enemy * enemy = new Enemy(enemyType, sound);
         enemy->setID(enemiesNumber);
         enemies[enemiesNumber] = enemy;
         game->scene->addItem(enemy);
