@@ -84,7 +84,7 @@ void Game::initGame()
     scene->addItem(scoreManager);
     scene->addItem(textManager);
 
-    textManager->showText("Press Enter to start");
+    textManager->showText("Press Enter to start\n Press 'M' to ON/OFF music");
     textManager->setPos(textManager->x()+65, textManager->y()+320);
 }
 

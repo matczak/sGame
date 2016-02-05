@@ -87,14 +87,14 @@ void Enemy::move(){
     if (y() < yTarget) {
         setPos(x(),y()+5);
     } else {
-        if(x() < xTarget) {
+        if (x() < xTarget) {
             setPos(x()+5,y());
-            if(x() >= xTarget) {
+            if (x() >= xTarget) {
                 xTarget = (rand() % 350 - 25) + 50;
             }
         } else {
             setPos(x()-5,y());
-            if(x() >= xTarget) {
+            if (x() >= xTarget) {
                 xTarget = (rand() % 50 - 25) + 50;
             }
         }
@@ -103,7 +103,7 @@ void Enemy::move(){
 
 void Enemy::shoot()
 {
-    if(sound== true) {
+    if (sound== true) {
         bulletSound->setPosition(0);
         bulletSound->play();
     }
