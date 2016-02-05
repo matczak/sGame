@@ -42,7 +42,7 @@ void EnemyManager::togglePause()
     for(i = enemies.begin();i != enemies.end(); i++) {
         (*enemies[i.key()]).setPause(paused);
     }
-    if(paused) {
+    if (paused) {
         timer->stop();
     } else {
         timer->start(timetToRespawn);
@@ -80,7 +80,7 @@ void EnemyManager::initTimer()
 
 void EnemyManager::spawn()
 {
-    if(activeEnemies < 3) {
+    if (activeEnemies < 3) {
         enemiesNumber++;
         int enemyType = (rand() % 3) + 1;
         Enemy * enemy = new Enemy(enemyType, sound);

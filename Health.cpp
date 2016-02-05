@@ -15,7 +15,7 @@ Health::Health(QGraphicsItem *parent): QGraphicsTextItem(parent){
 
 void Health::decrease(){
     health--;
-    if(health < 0) {
+    if (health < 0) {
         game->gameOver();
         return;
     }

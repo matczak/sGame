@@ -30,7 +30,7 @@ void Bullet::move(){
 
     for (int i = 0, n = colliding_items.size(); i < n; ++i){
         if (typeid(*(colliding_items[i])) == typeid(Enemy)){
-            if(this->type == ENEMY) continue;
+            if (this->type == ENEMY) continue;
             game->scoreManager->increase();
             game->enemyManager->decreaseEnemies();
 
@@ -41,7 +41,7 @@ void Bullet::move(){
             delete this;
 
             return;
-        } else if(typeid(*(colliding_items[i])) == typeid(Player)) {
+        } else if (typeid(*(colliding_items[i])) == typeid(Player)) {
             game->health->decrease();
             scene()->removeItem(this);
             delete this;

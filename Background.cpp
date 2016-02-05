@@ -10,7 +10,7 @@ Background::Background()
 void Background::togglePause()
 {
     paused = !paused;
-    if(paused) {
+    if (paused) {
         timer->stop();
     } else {
         timer->start(100);
@@ -26,7 +26,7 @@ void Background::start()
 
 void Background::move()
 {
-    if(y() < yTarget) {
+    if (y() < yTarget) {
         setPos(x(),y()+1);
         if (y() >= yTarget) {
             yTarget = 0;

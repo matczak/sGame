@@ -11,12 +11,12 @@ Player::Player(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
 
 void Player::move(direction dir)
 {
-    if(paused) return;
-    if( dir == LEFT) {
-        if(x()<10) return;
+    if (paused) return;
+    if ( dir == LEFT) {
+        if (x()<10) return;
         setPos(x()-10, y());
     } else if (dir == RIGHT) {
-        if(x()>330)return;
+        if (x()>330)return;
         setPos(x()+10, y());
     }
 }
@@ -33,8 +33,8 @@ void Player::toggleSound()
 
 void Player::shoot()
 {
-    if(timer.elapsed() > 500 && !paused) {
-        if(sound== true) {
+    if (timer.elapsed() > 500 && !paused) {
+        if (sound== true) {
             bulletSound->setPosition(0);
             bulletSound->play();
         }

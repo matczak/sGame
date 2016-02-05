@@ -103,7 +103,7 @@ void Game::pause()
 
 void Game::toggleMusic()
 {
-    if(music->state() == QMediaPlayer::PlayingState) {
+    if (music->state() == QMediaPlayer::PlayingState) {
         music->pause();
     } else {
         music->play();
